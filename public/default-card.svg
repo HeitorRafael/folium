@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <!-- Fundo sutil -->
+  <rect width="400" height="300" fill="#F0EBE0" rx="0"/>
+
+  <!-- Frasco esquerdo (Erlenmeyer menor) -->
+  <path d="M140 70 L140 130 L108 188 L172 188 Z"
+    stroke="#7C6248" stroke-width="3" fill="none"
+    stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+  <line x1="133" y1="70" x2="147" y2="70"
+    stroke="#7C6248" stroke-width="3.5" stroke-linecap="round" opacity="0.6"/>
+  <!-- Bolhas frasco esquerdo -->
+  <circle cx="122" cy="172" r="5" stroke="#7C6248" stroke-width="2" fill="none" opacity="0.4"/>
+  <circle cx="133" cy="155" r="4" stroke="#7C6248" stroke-width="2" fill="none" opacity="0.35"/>
+  <circle cx="148" cy="135" r="6.5" stroke="#7C6248" stroke-width="2" fill="none" opacity="0.3"/>
+  <circle cx="140" cy="112" r="4" stroke="#7C6248" stroke-width="2" fill="none" opacity="0.25"/>
+
+  <!-- Frasco direito (Erlenmeyer maior) -->
+  <path d="M240 52 L240 132 L200 200 L280 200 Z"
+    stroke="#7C6248" stroke-width="3" fill="none"
+    stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+  <line x1="232" y1="52" x2="248" y2="52"
+    stroke="#7C6248" stroke-width="3.5" stroke-linecap="round" opacity="0.7"/>
+  <!-- Bolhas frasco direito -->
+  <circle cx="215" cy="182" r="6" stroke="#7C6248" stroke-width="2" fill="none" opacity="0.45"/>
+  <circle cx="228" cy="163" r="5" stroke="#7C6248" stroke-width="2" fill="none" opacity="0.4"/>
+  <circle cx="245" cy="143" r="8" stroke="#7C6248" stroke-width="2" fill="none" opacity="0.35"/>
+  <circle cx="255" cy="120" r="5.5" stroke="#7C6248" stroke-width="2" fill="none" opacity="0.3"/>
+  <circle cx="248" cy="97" r="4" stroke="#7C6248" stroke-width="2" fill="none" opacity="0.25"/>
+  <circle cx="260" cy="78" r="3" stroke="#7C6248" stroke-width="2" fill="none" opacity="0.2"/>
+</svg>

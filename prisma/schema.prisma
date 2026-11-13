@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id           String         @id @default(cuid())
+  supabaseId   String         @unique @map("supabase_id")
+  email        String         @unique
+  name         String
+  username     String         @unique
+  avatarUrl    String?        @map("avatar_url")
+  bio          String?
+  isPremium    Boolean        @default(false) @map("is_premium")
+  createdAt    DateTime       @default(now()) @map("created_at")
+  ensaios      Ensaio[]
+  frascos      Frasco[]
+  follows      TopicoFollow[]
+
+  @@map("users")
+}
+
+model Topico {
+  id          String         @id @default(cuid())
+  name        String
+  slug        String         @unique
+  description String?
+  createdAt   DateTime       @default(now()) @map("created_at")
+  ensaios     Ensaio[]
+  followers   TopicoFollow[]
+
+  @@map("topicos")
+}
+
+model Ensaio {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String
+  content     String   @db.Text
+  preview     String
+  coverUrl    String?  @map("cover_url")
+  authorId    String   @map("author_id")
+  topicoId    String   @map("topico_id")
+  frascoCount Int      @default(0) @map("frasco_count")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  topico      Topico   @relation(fields: [topicoId], references: [id])
+  frascos     Frasco[]
+
+  @@unique([slug, topicoId])
+  @@index([topicoId, frascoCount(sort: Desc)])
+  @@index([createdAt(sort: Desc)])
+  @@map("ensaios")
+}
+
+model Frasco {
+  id        String     @id @default(cuid())
+  ensaioId  String     @map("ensaio_id")
+  userId    String     @map("user_id")
+  type      FrascoType
+  createdAt DateTime   @default(now()) @map("created_at")
+  ensaio    Ensaio     @relation(fields: [ensaioId], references: [id], onDelete: Cascade)
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([ensaioId, userId])
+  @@map("frascos")
+}
+
+model TopicoFollow {
+  userId    String   @map("user_id")
+  topicoId  String   @map("topico_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topico    Topico   @relation(fields: [topicoId], references: [id], onDelete: Cascade)
+
+  @@id([userId, topicoId])
+  @@map("topico_follows")
+}
+
+enum FrascoType {
+  POSITIVE
+  NEGATIVE
+}
